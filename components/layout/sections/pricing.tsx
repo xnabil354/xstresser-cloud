@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import OrderButton from "../../ui/OrderButton"; // Import OrderButton
 
 enum PopularPlan {
   NO = 0,
@@ -200,15 +201,11 @@ export const PricingSection = () => {
               </CardContent>
 
               <CardFooter>
-                <Button
-                  variant={
-                    popular === PopularPlan?.YES ? "default" : "secondary"
-                  }
-                  className="w-full"
-                  onClick={() => window.open("https://t.me/cloud_xstresser_bot", "_blank")}
-                >
-                  {buttonText}
-                </Button>
+                <OrderButton
+                  buttonText={buttonText}
+                  link="https://t.me/cloud_xstresser_bot"
+                  variant={popular === PopularPlan?.YES ? "default" : "secondary"}
+                />
               </CardFooter>
             </Card>
           )
@@ -254,15 +251,11 @@ export const PricingSection = () => {
               </CardContent>
 
               <CardFooter>
-                <Button
-                  variant={
-                    popular === PopularPlan?.YES ? "default" : "secondary"
-                  }
-                  className="w-full"
-                  onClick={() => window.open("https://t.me/cloud_xstresser_bot", "_blank")}
-                >
-                  {buttonText}
-                </Button>
+                <OrderButton
+                  buttonText={buttonText}
+                  link="https://t.me/cloud_xstresser_bot"
+                  variant={popular === PopularPlan?.YES ? "default" : "secondary"}
+                />
               </CardFooter>
             </Card>
           )
