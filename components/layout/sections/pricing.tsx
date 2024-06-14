@@ -205,6 +205,7 @@ export const PricingSection = () => {
                     popular === PopularPlan?.YES ? "default" : "secondary"
                   }
                   className="w-full"
+                  onClick={() => window.open("https://t.me/cloud_xstresser_bot", "_blank")}
                 >
                   {buttonText}
                 </Button>
@@ -258,6 +259,7 @@ export const PricingSection = () => {
                     popular === PopularPlan?.YES ? "default" : "secondary"
                   }
                   className="w-full"
+                  onClick={() => window.open("https://t.me/cloud_xstresser_bot", "_blank")}
                 >
                   {buttonText}
                 </Button>
