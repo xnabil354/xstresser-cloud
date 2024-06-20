@@ -7,8 +7,8 @@ import Turnstile from "react-turnstile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
-const BOT_TOKEN = "7190175151:AAHaGL4M2Q71UB93NPUJ0sOAy29WSUjp1w4";
-const CHAT_ID = "1365766425";
+const BOT_TOKEN = "YOUR_BOT_TOKEN";
+const CHAT_ID = "YOUR_CHAT_ID";
 const TELEGRAM_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
 interface FormData {
@@ -85,6 +85,7 @@ const OrderForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false); // Add state for dark mode
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -219,198 +220,177 @@ Data Center Region: ${formData.dataCenterRegion}
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h2 className="text-lg text-primary text-center mb-2 tracking-wider">Order Here</h2>
-      <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">Get unlimited access</h2>
+    <div id="orderhere" className="container mx-auto p-6">
+      <h2 className="text-lg text-primary mt-2 text-center mb-2 tracking-wider">Order Now!</h2>
+      <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">Buat kamu yang gamau ribet, Order langsung dibawah sini!</h2>
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-gray-600 pb-14">
         Fill out the form below to place your order and we will get back to you as soon as possible.
       </h3>
       <form
         onSubmit={handleSubmit}
-        className="max-w-xl mx-auto bg-gray-950 shadow-md rounded-lg p-6 space-y-4"
+        className={`max-w-xl mx-auto shadow-md rounded-lg p-6 space-y-4 ${isDarkMode ? 'bg-gray-950' : 'bg-white'}`}
       >
         <div>
-          <label className="block text-white-700 font-mono">Upload Bukti Pembayaran</label>
+          <label className="block text-primary mt-2 font-mono">Upload Bukti Pembayaran</label>
           <input
             type="file"
             name="imageFile"
             onChange={handleChange}
-            className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           />
+          <span className="text-sm text-gray-500">Accepted formats: .jpg, .jpeg, .png</span>
         </div>
         {!formData.imageFile && (
           <div>
-            <label className="block text-white-700 font-mono">Image URL</label>
+            <label className="block text-primary mt-2 font-mono">Atau Bukti Pembayaran Via URL </label>
             <input
               type="text"
               name="imageUrl"
               value={formData.imageUrl}
               onChange={handleChange}
-              className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
             />
           </div>
         )}
-        <div className="relative">
-          <label className="block text-white-700 font-mono">Telegram ID</label>
-          <button
-            type="button"
-            onClick={() => setIsModalOpen(true)}
-            className="absolute top-0 right-0 mt-4 mr-2 text-blue-500"
-          >
-            <FontAwesomeIcon icon={faInfoCircle} className="text-lg text-blue-500" />
-          </button>
-          <input
-            type="text"
-            name="idTelegram"
-            value={formData.idTelegram}
-            onChange={handleChange}
-            className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
-            required
-          />
-        </div>
         <div>
-          <label className="block text-white-700 font-mono">Full Name</label>
+          <label className="block text-primary mt-2 font-mono">Nama Lengkap</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
             required
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           />
         </div>
         <div>
-          <label className="block text-white-700 font-mono">Whatsapp/Telegram Number</label>
+          <label className="block text-primary mt-2 font-mono">Nomor WhatsApp/Telegram</label>
           <input
             type="text"
             name="phoneNumber"
             value={formData.phoneNumber}
             onChange={handleChange}
-            className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
             required
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           />
         </div>
         <div>
-          <label className="block text-white-700 font-mono">Hostname</label>
+          <label className="block text-primary mt-2 font-mono">Id Telegram</label>
+          <input
+            type="text"
+            name="idTelegram"
+            value={formData.idTelegram}
+            onChange={handleChange}
+            required
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
+          />
+        </div>
+        <div>
+          <label className="block text-primary mt-2 font-mono">Hostname Cloud</label>
           <input
             type="text"
             name="hostname"
             value={formData.hostname}
             onChange={handleChange}
-            className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
             required
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           />
         </div>
         <div>
-          <label className="block text-white-700 font-mono">Service Type</label>
+          <label className="block text-primary mt-2 font-mono">Jenis Layanan</label>
           <select
             name="serviceType"
             value={formData.serviceType}
             onChange={handleChange}
-            className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
             required
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           >
-            <option value="">Select Service Type</option>
+            <option value="" disabled>Pilih jenis layanan</option>
             <option value="VPS">VPS</option>
             <option value="RDP">RDP</option>
           </select>
         </div>
         {formData.serviceType && (
-          <>
-            <div>
-              <label className="block text-white-700 font-mono">Package Type</label>
-              <select
-                name="packageType"
-                value={formData.packageType}
-                onChange={handleChange}
-                className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
-                required
-              >
-                <option value="">Select Package Type</option>
-                {(formData.serviceType === "VPS" ? vpsPackageOptions : rdpPackageOptions).map((option, index) => (
+          <div>
+            <label className="block text-primary mt-2 font-mono">Paket</label>
+            <select
+              name="packageType"
+              value={formData.packageType}
+              onChange={handleChange}
+              required
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
+            >
+              <option value="" disabled>Pilih paket</option>
+              {(formData.serviceType === "VPS" ? vpsPackageOptions : rdpPackageOptions).map(
+                (option, index) => (
                   <option key={index} value={option}>
                     {option}
                   </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-white-700 font-mono">Operating System</label>
-              <select
-                name="operatingSystem"
-                value={formData.operatingSystem}
-                onChange={handleChange}
-                className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
-                required
-              >
-                <option value="">Select Operating System</option>
-                {(formData.serviceType === "VPS" ? vpsOperatingSystemOptions : rdpOperatingSystemOptions).map((option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-white-700 font-mono">Data Center Region</label>
-              <select
-                name="dataCenterRegion"
-                value={formData.dataCenterRegion}
-                onChange={handleChange}
-                className="mt-1 p-3 w-full border border-gray-300 rounded-lg"
-                required
-              >
-                <option value="">Select Data Center Region</option>
-                {dataCenterRegions.map((region, index) => (
-                  <option key={index} value={region}>
-                    {region}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </>
+                )
+              )}
+            </select>
+          </div>
         )}
-        <div className="mt-4">
+        {formData.serviceType && (
+          <div>
+            <label className="block text-primary mt-2 font-mono">Sistem Operasi</label>
+            <select
+              name="operatingSystem"
+              value={formData.operatingSystem}
+              onChange={handleChange}
+              required
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
+            >
+              <option value="" disabled>Pilih sistem operasi</option>
+              {(formData.serviceType === "VPS" ? vpsOperatingSystemOptions : rdpOperatingSystemOptions).map(
+                (option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+        )}
+        {formData.serviceType && (
+          <div>
+            <label className="block text-primary mt-2 font-mono">Region Data Center</label>
+            <select
+              name="dataCenterRegion"
+              value={formData.dataCenterRegion}
+              onChange={handleChange}
+              required
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
+            >
+              <option value="" disabled>Pilih region data center</option>
+              {dataCenterRegions.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        <div className="my-4">
           <Turnstile
-            sitekey="0x4AAAAAAAc2rK95Mjhi-ilJ"
+            sitekey="0x4AAAAAAAc5YaxYr1eWRxBn"
             onVerify={(token) => setToken(token)}
+            className="turnstile-custom"
           />
         </div>
-        <button
-          type="submit"
-          className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-mono transition-all duration-300 hover:from-purple-600 hover:to-blue-500"
-          disabled={isLoading}
-        >
-          {isLoading ? <RingLoader size={30} color="#ffffff" /> : "Order Now!"}
-        </button>
-      </form>
-
-      {isModalOpen && (
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <div className="bg-yellow-300 rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full p-6">
-              <h3 className="text-lg font-bold leading-6 text-gray-900">Informasi Telegram ID</h3>
-              <div className="mt-2">
-                <p className="text-sm text-black font-mono">
-                  Untuk Mengetahui Telegram ID anda, silahkan kunjungi link berikut : <a href="https://t.me/CekIDTelegram_bot">CekIDTelegram_bot</a>
-                </p>
-              </div>
-              <div className="mt-4">
-                <button
-                  type="button"
-                  className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-mono transition-all duration-300 hover:from-purple-600 hover:to-blue-500"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Got it!
-                </button>
-              </div>
-            </div>
+        {isLoading ? (
+          <div className="flex justify-center">
+            <RingLoader color="#36d7b7" loading={isLoading} />
           </div>
-        </div>
-      )}
+        ) : (
+          <button
+            type="submit"
+            className="w-full py-3 rounded-lg transition-all duration-300 flex items-center justify-center font-mono bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-purple-600 hover:to-blue-500"
+          >
+            Order Sekarang
+          </button>
+        )}
+      </form>
     </div>
   );
 };
