@@ -424,7 +424,7 @@ Data Center Region: ${formData.dataCenterRegion}
               <li>Orders are processed within 24 hours.</li>
               <li>Payments are non-refundable once the order is processed.</li>
               <li>Ensure that all information provided is accurate.</li>
-              <li>For support, contact us at <a href="https://t.me/xzhndvs">Xzhndvs</a></li>
+              <li>For support, contact us at <a target="_blank" href="https://t.me/xzhndvs">Xzhndvs</a></li>
             </ul>
             <div className="mt-6 text-center">
               <button
