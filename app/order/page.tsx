@@ -241,7 +241,7 @@ Data Center Region: ${formData.dataCenterRegion}
             type="file"
             name="imageFile"
             onChange={handleChange}
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
           />
           <span className="text-sm text-gray-500">Accepted formats: .jpg, .jpeg, .png</span>
         </div>
@@ -254,7 +254,7 @@ Data Center Region: ${formData.dataCenterRegion}
               value={formData.imageUrl}
               onChange={handleChange}
               placeholder="https://example.com/image.jpg"
-              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
             />
           </div>
         )}
@@ -266,7 +266,7 @@ Data Center Region: ${formData.dataCenterRegion}
             value={formData.name}
             onChange={handleChange}
             placeholder="Masukkan Nama Anda"
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
             required
           />
         </div>
@@ -279,7 +279,7 @@ Data Center Region: ${formData.dataCenterRegion}
             onChange={handleChange}
             pattern="\d*"
             placeholder="Masukkan Nomor WhatsApp/Telegram"
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
             required
           />
         </div>
@@ -292,7 +292,7 @@ Data Center Region: ${formData.dataCenterRegion}
             onChange={handleChange}
             pattern="\d*"
             placeholder="Masukkan ID Telegram"
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
             required
           />
         </div>
@@ -304,7 +304,7 @@ Data Center Region: ${formData.dataCenterRegion}
             value={formData.hostname}
             onChange={handleChange}
             placeholder="Masukkan Hostname"
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
             required
           />
         </div>
@@ -314,7 +314,7 @@ Data Center Region: ${formData.dataCenterRegion}
             name="serviceType"
             value={formData.serviceType}
             onChange={handleChange}
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
             required
           >
             <option value="" disabled>
@@ -331,7 +331,7 @@ Data Center Region: ${formData.dataCenterRegion}
               name="packageType"
               value={formData.packageType}
               onChange={handleChange}
-              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
               required
             >
               <option value="" disabled>
@@ -352,7 +352,7 @@ Data Center Region: ${formData.dataCenterRegion}
               name="operatingSystem"
               value={formData.operatingSystem}
               onChange={handleChange}
-              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
               required
             >
               <option value="" disabled>
@@ -373,7 +373,7 @@ Data Center Region: ${formData.dataCenterRegion}
               name="dataCenterRegion"
               value={formData.dataCenterRegion}
               onChange={handleChange}
-              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-cyan-600'} rounded-lg`}
               required
             >
               <option value="" disabled>

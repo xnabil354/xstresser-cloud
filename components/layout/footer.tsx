@@ -25,7 +25,7 @@ const Footer = () => {
               <Link href="/#faq" className="hover:text-primary transition duration-300 font-mono">
                 FAQ
               </Link>
-              <Link href="/orderhere" className="hover:text-primary transition duration-300 font-mono">
+              <Link href="/order" className="hover:text-primary transition duration-300 font-mono">
                 Order Here
               </Link>
             </nav>
