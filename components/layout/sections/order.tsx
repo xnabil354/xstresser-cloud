@@ -107,6 +107,11 @@ const OrderForm = () => {
       }
       setFormData((prevFormData) => ({ ...prevFormData, [name]: target.files![0] }));
     } else {
+      if (name === "phoneNumber" || name === "idTelegram") {
+        if (!/^\d*$/.test(value)) {
+          return;
+        }
+      }
       setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     }
 
@@ -228,7 +233,7 @@ Data Center Region: ${formData.dataCenterRegion}
       </h3>
       <form
         onSubmit={handleSubmit}
-        className={`max-w-xl mx-auto shadow-md rounded-lg p-6 space-y-4 ${isDarkMode ? 'bg-gray-950' : 'bg-white'}`}
+        className={`max-w-xl mx-auto shadow-md rounded-lg p-6 space-y-4 ${isDarkMode ? 'bg-gray-950' : 'bg-transparent'}`}
       >
         <div>
           <label className="block text-primary mt-2 font-mono">Upload Bukti Pembayaran</label>
@@ -236,42 +241,46 @@ Data Center Region: ${formData.dataCenterRegion}
             type="file"
             name="imageFile"
             onChange={handleChange}
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
           />
           <span className="text-sm text-gray-500">Accepted formats: .jpg, .jpeg, .png</span>
         </div>
         {!formData.imageFile && (
           <div>
-            <label className="block text-primary mt-2 font-mono">Atau Bukti Pembayaran Via URL </label>
+            <label className="block text-primary mt-2 font-mono">Image URL (Optional)</label>
             <input
               type="text"
               name="imageUrl"
               value={formData.imageUrl}
               onChange={handleChange}
-              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
+              placeholder="https://example.com/image.jpg"
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
             />
           </div>
         )}
         <div>
-          <label className="block text-primary mt-2 font-mono">Nama Lengkap</label>
+          <label className="block text-primary mt-2 font-mono">Nama</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            placeholder="Masukkan Nama Anda"
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
             required
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           />
         </div>
         <div>
           <label className="block text-primary mt-2 font-mono">Nomor WhatsApp/Telegram</label>
           <input
-            type="text"
+            type="tel"
             name="phoneNumber"
             value={formData.phoneNumber}
             onChange={handleChange}
+            pattern="\d*"
+            placeholder="Masukkan Nomor WhatsApp/Telegram"
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
             required
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           />
         </div>
         <div>
@@ -281,53 +290,58 @@ Data Center Region: ${formData.dataCenterRegion}
             name="idTelegram"
             value={formData.idTelegram}
             onChange={handleChange}
+            pattern="\d*"
+            placeholder="Masukkan ID Telegram"
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
             required
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           />
         </div>
         <div>
-          <label className="block text-primary mt-2 font-mono">Hostname Cloud</label>
+          <label className="block text-primary mt-2 font-mono">Hostname</label>
           <input
             type="text"
             name="hostname"
             value={formData.hostname}
             onChange={handleChange}
+            placeholder="Masukkan Hostname"
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
             required
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           />
         </div>
         <div>
-          <label className="block text-primary mt-2 font-mono">Jenis Layanan</label>
+          <label className="block text-primary mt-2 font-mono">Tipe Layanan</label>
           <select
             name="serviceType"
             value={formData.serviceType}
             onChange={handleChange}
+            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
             required
-            className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
           >
-            <option value="" disabled>Pilih jenis layanan</option>
+            <option value="" disabled>
+              Pilih tipe layanan
+            </option>
             <option value="VPS">VPS</option>
             <option value="RDP">RDP</option>
           </select>
         </div>
         {formData.serviceType && (
           <div>
-            <label className="block text-primary mt-2 font-mono">Paket</label>
+            <label className="block text-primary mt-2 font-mono">Pilih Paket</label>
             <select
               name="packageType"
               value={formData.packageType}
               onChange={handleChange}
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
               required
-              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
             >
-              <option value="" disabled>Pilih paket</option>
-              {(formData.serviceType === "VPS" ? vpsPackageOptions : rdpPackageOptions).map(
-                (option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                )
-              )}
+              <option value="" disabled>
+                Pilih paket
+              </option>
+              {(formData.serviceType === "VPS" ? vpsPackageOptions : rdpPackageOptions).map((packageOption) => (
+                <option key={packageOption} value={packageOption}>
+                  {packageOption}
+                </option>
+              ))}
             </select>
           </div>
         )}
@@ -338,58 +352,53 @@ Data Center Region: ${formData.dataCenterRegion}
               name="operatingSystem"
               value={formData.operatingSystem}
               onChange={handleChange}
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
               required
-              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
             >
-              <option value="" disabled>Pilih sistem operasi</option>
-              {(formData.serviceType === "VPS" ? vpsOperatingSystemOptions : rdpOperatingSystemOptions).map(
-                (option, index) => (
-                  <option key={index} value={option}>
-                    {option}
-                  </option>
-                )
-              )}
-            </select>
-          </div>
-        )}
-        {formData.serviceType && (
-          <div>
-            <label className="block text-primary mt-2 font-mono">Region Data Center</label>
-            <select
-              name="dataCenterRegion"
-              value={formData.dataCenterRegion}
-              onChange={handleChange}
-              required
-              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-white text-gray-700'} rounded-lg`}
-            >
-              <option value="" disabled>Pilih region data center</option>
-              {dataCenterRegions.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
+              <option value="" disabled>
+                Pilih sistem operasi
+              </option>
+              {(formData.serviceType === "VPS" ? vpsOperatingSystemOptions : rdpOperatingSystemOptions).map((osOption) => (
+                <option key={osOption} value={osOption}>
+                  {osOption}
                 </option>
               ))}
             </select>
           </div>
         )}
-        <div className="my-4">
-          <Turnstile
-            sitekey="0x4AAAAAAAc5YaxYr1eWRxBn"
-            onVerify={(token) => setToken(token)}
-            className="turnstile-custom"
-          />
-        </div>
-        {isLoading ? (
-          <div className="flex justify-center">
-            <RingLoader color="#36d7b7" loading={isLoading} />
+        {formData.serviceType && (
+          <div>
+            <label className="block text-primary mt-2 font-mono">Wilayah Data Center</label>
+            <select
+              name="dataCenterRegion"
+              value={formData.dataCenterRegion}
+              onChange={handleChange}
+              className={`mt-1 p-3 w-full border ${isDarkMode ? 'border-gray-700 bg-gray-700 text-white' : 'border-gray-300 bg-transparent text-yellow-400'} rounded-lg`}
+              required
+            >
+              <option value="" disabled>
+                Pilih wilayah data center
+              </option>
+              {dataCenterRegions.map((region) => (
+                <option key={region} value={region}>
+                  {region}
+                </option>
+              ))}
+            </select>
           </div>
-        ) : (
+        )}
+        <div>
+          <Turnstile sitekey="0x4AAAAAAAc5YaxYr1eWRxBn" onVerify={(token) => setToken(token)} />
+        </div>
+        <div>
           <button
             type="submit"
-            className="w-full py-3 rounded-lg transition-all duration-300 flex items-center justify-center font-mono bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-purple-600 hover:to-blue-500"
+            disabled={isLoading}
+            className={`w-full text-center py-3 px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
           >
-            Order Sekarang
+            {isLoading ? <RingLoader size={24} color={"#ffffff"} /> : "Submit"}
           </button>
-        )}
+        </div>
       </form>
     </div>
   );

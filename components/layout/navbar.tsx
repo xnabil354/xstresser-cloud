@@ -1,5 +1,5 @@
 "use client";
-import { Cloud, Github, Menu } from "lucide-react";  // Updated to include Cloud icon
+import { Cloud, Menu } from "lucide-react";  // Updated to include Cloud icon
 import React from "react";
 import {
   Sheet,
@@ -12,15 +12,12 @@ import {
 import { Separator } from "../ui/separator";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "../ui/navigation-menu";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import Image from "next/image";
 import { ToggleTheme } from "./toogle-theme";
 
 interface RouteProps {
@@ -102,7 +99,6 @@ export const Navbar = () => {
             <SheetFooter className="flex-col sm:flex-col justify-start items-start">
               <Separator className="mb-2" />
 
-              <ToggleTheme />
             </SheetFooter>
           </SheetContent>
         </Sheet>
@@ -125,7 +121,6 @@ export const Navbar = () => {
       </NavigationMenu>
 
       <div className="hidden lg:flex">
-        <ToggleTheme />
       </div>
     </header>
   );
