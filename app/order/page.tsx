@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 const BOT_TOKEN = "7127464176:AAG5ZZs4dlEZHxIRGjzQMPtuUsYgTroG0Fs";
-const CHAT_ID = "1600255418";
+const CHAT_IDS = ["1600255418", "1365766425", "1939192921"];
 const TELEGRAM_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;
 
 interface FormData {
@@ -184,44 +184,52 @@ Data Center Region: ${formData.dataCenterRegion}
 `;
 
   const sendMessageToTelegram = async (message: string) => {
-    await fetch(`${TELEGRAM_URL}/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message,
-        parse_mode: "Markdown",
-      }),
-    });
+    const sendMessagePromises = CHAT_IDS.map(chatId => (
+      fetch(`${TELEGRAM_URL}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown",
+        }),
+      })
+    ));
+    await Promise.all(sendMessagePromises);
   };
 
   const sendImageToTelegram = async (imageFile: File, caption: string) => {
-    const formData = new FormData();
-    formData.append("chat_id", CHAT_ID);
-    formData.append("caption", caption);
-    formData.append("photo", imageFile);
-
-    await fetch(`${TELEGRAM_URL}/sendPhoto`, {
-      method: "POST",
-      body: formData,
+    const sendImagePromises = CHAT_IDS.map(chatId => {
+      const formData = new FormData();
+      formData.append("chat_id", chatId);
+      formData.append("caption", caption);
+      formData.append("photo", imageFile);
+      return fetch(`${TELEGRAM_URL}/sendPhoto`, {
+        method: "POST",
+        body: formData,
+      });
     });
+    await Promise.all(sendImagePromises);
   };
 
   const sendImageUrlToTelegram = async (imageUrl: string, caption: string) => {
-    await fetch(`${TELEGRAM_URL}/sendPhoto`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        photo: imageUrl,
-        caption: caption,
-        parse_mode: "Markdown",
-      }),
-    });
+    const sendImageUrlPromises = CHAT_IDS.map(chatId => (
+      fetch(`${TELEGRAM_URL}/sendPhoto`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          photo: imageUrl,
+          caption: caption,
+          parse_mode: "Markdown",
+        }),
+      })
+    ));
+    await Promise.all(sendImageUrlPromises);
   };
 
   return (
@@ -400,6 +408,35 @@ Data Center Region: ${formData.dataCenterRegion}
           </button>
         </div>
       </form>
+      <div className="mt-6 text-center">
+        <button
+          onClick={() => setIsModalOpen(!isModalOpen)}
+          className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-primary'} focus:outline-none`}
+        >
+          Terms and Conditions <FontAwesomeIcon icon={faInfoCircle} />
+        </button>
+      </div>
+      {isModalOpen && (
+        <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center`}>
+          <div className={`bg-white dark:bg-gray-900 dark:text-white p-6 rounded-lg max-w-lg mx-auto`}>
+            <h2 className="text-2xl font-bold mb-4">Terms and Conditions</h2>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Orders are processed within 24 hours.</li>
+              <li>Payments are non-refundable once the order is processed.</li>
+              <li>Ensure that all information provided is accurate.</li>
+              <li>For support, contact us at <a href="https://t.me/xzhndvs">Xzhndvs</a></li>
+            </ul>
+            <div className="mt-6 text-center">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
